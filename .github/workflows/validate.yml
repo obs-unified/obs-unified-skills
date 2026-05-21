@@ -1,0 +1,25 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate SKILL.md frontmatter
+        run: make validate
+
+      - name: Build .skill artifacts
+        run: make build
+
+      - name: Upload .skill artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: skill-bundles
+          path: dist/*.skill
+          retention-days: 14
