@@ -162,6 +162,24 @@ If AI signals are present, search the codebase for outbound LLM call sites. Patt
 | Embedding generation | `startEmbeddingSpan` |
 | Agent loop entry point | `startAgentSpan` |
 
+If the app has an agent loop, tool-calling framework, or MCP host, prefer the
+Agent Action Graph helpers/wrappers where available. The goal is not only to
+record an LLM span, but to emit explicit causal fields so future investigations
+do not rely on fallback IDs:
+
+- root action/run ID
+- action ID for each agent step, LLM call, retrieval, tool call, eval, or guardrail
+- `caused_by_action_id` or parent action context
+- tool name, args/result hashes or redacted summaries, side-effect flag, and approval state
+- model/provider, prompt version, token/cost/latency fields
+- eval name/version/score/pass-fail for guardrails or quality checks
+
+When a framework wrapper exists, use it before hand-rolling action attributes:
+
+- Vercel AI SDK: `@obs-unified/agents-vercel-ai`
+- LangGraph/LangChain runnable flows: `@obs-unified/agents-langgraph`
+- Native TypeScript agents: `@obs-unified/telemetry-sdk/agent`
+
 For each LLM call site, wrap with the matching helper per §5 of the doc. After the call:
 
 - `span.setOutput(result)` — captured as `ai.payload.output`
