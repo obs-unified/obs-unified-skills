@@ -122,7 +122,7 @@ For evidence references:
 - `route` or `href` is the dashboard link to show the user.
 - `confidence` tells you how strongly to phrase the finding.
 - `source` tells you which subsystem produced the evidence.
-- `citations` and `suggestedPivots` are the agent's next-step menu.
+- `citations` and `suggestedNextPivots` are the agent's next-step menu.
 
 ### 5. Report findings
 
