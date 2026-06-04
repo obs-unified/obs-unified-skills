@@ -1,6 +1,6 @@
 SKILLS := instrument-obs-unified investigate-obs-unified
 
-.PHONY: build validate lint clean
+.PHONY: build validate lint clean messaging-check
 
 build:
 	@mkdir -p dist
@@ -8,10 +8,14 @@ build:
 		scripts/package.sh $$skill; \
 	done
 
-validate:
+validate: messaging-check
 	@for skill in $(SKILLS); do \
 		scripts/validate.sh $$skill; \
 	done
+
+# RFC 0012 messaging parity: SKILL.md files vs vendored messaging.manifest.json
+messaging-check:
+	node scripts/messaging-check.mjs
 
 lint:
 	shellcheck scripts/*.sh

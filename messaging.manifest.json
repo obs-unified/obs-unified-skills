@@ -1,0 +1,306 @@
+{
+	"$note": "DO NOT EDIT the `derived` block by hand — run `pnpm --filter @obs-unified/messaging generate`. The `authored` block is hand-maintained.",
+	"schemaVersion": "obs-unified.messaging-manifest.v1",
+	"derived": {
+		"mcpTools": [
+			"get_evidence_bundle",
+			"retrieve_evidence_ref",
+			"search_evidence_ref",
+			"get_evidence_stats",
+			"obs_status",
+			"recent_traces",
+			"get_trace",
+			"service_operations",
+			"service_map",
+			"search_logs",
+			"ai_overview",
+			"get_ai_session",
+			"get_user",
+			"get_replay",
+			"get_profile",
+			"get_eval",
+			"connected_signals",
+			"get_agent_run",
+			"get_action",
+			"get_tool_call"
+		],
+		"connectedKinds": [
+			"span",
+			"profile",
+			"log",
+			"usage",
+			"ai_call",
+			"replay",
+			"alert",
+			"analysis",
+			"user",
+			"action",
+			"agent_run",
+			"tool_call"
+		],
+		"evidenceReferenceFields": [
+			"evidenceId",
+			"entityKind",
+			"entityId",
+			"route",
+			"source",
+			"confidence",
+			"reason",
+			"citations",
+			"suggestedNextPivots"
+		],
+		"evidenceRetrievalRefFields": [
+			"refId",
+			"kind",
+			"anchor",
+			"source"
+		],
+		"evidenceRetrievalKinds": [
+			"logs",
+			"trace",
+			"span",
+			"replay",
+			"profile",
+			"ai_call",
+			"action",
+			"agent_run",
+			"tool_call",
+			"eval",
+			"analysis"
+		],
+		"packages": [
+			{
+				"name": "@obs-unified/agents-langgraph",
+				"registry": "https://npm.pkg.github.com",
+				"scope": "@obs-unified",
+				"dir": "packages/agents-langgraph",
+				"private": false
+			},
+			{
+				"name": "@obs-unified/agents-vercel-ai",
+				"registry": "https://npm.pkg.github.com",
+				"scope": "@obs-unified",
+				"dir": "packages/agents-vercel-ai",
+				"private": false
+			},
+			{
+				"name": "@obs-unified/analytics-sdk",
+				"registry": "https://npm.pkg.github.com",
+				"scope": "@obs-unified",
+				"dir": "packages/analytics-sdk",
+				"private": false
+			},
+			{
+				"name": "@obs-unified/brand",
+				"registry": "https://npm.pkg.github.com",
+				"scope": "@obs-unified",
+				"dir": "packages/brand",
+				"private": false
+			},
+			{
+				"name": "@obs-unified/cli",
+				"registry": "https://npm.pkg.github.com",
+				"scope": "@obs-unified",
+				"dir": "packages/cli",
+				"private": false
+			},
+			{
+				"name": "@obs-unified/collector",
+				"registry": "https://npm.pkg.github.com",
+				"scope": "@obs-unified",
+				"dir": "packages/obs-collector",
+				"private": false
+			},
+			{
+				"name": "@obs-unified/dashboard",
+				"registry": "https://npm.pkg.github.com",
+				"scope": "@obs-unified",
+				"dir": "packages/dashboard",
+				"private": false
+			},
+			{
+				"name": "@obs-unified/messaging",
+				"registry": "https://npm.pkg.github.com",
+				"scope": "@obs-unified",
+				"dir": "packages/messaging",
+				"private": true
+			},
+			{
+				"name": "@obs-unified/pprof-decoder",
+				"registry": "https://npm.pkg.github.com",
+				"scope": "@obs-unified",
+				"dir": "packages/pprof-decoder",
+				"private": false
+			},
+			{
+				"name": "@obs-unified/sdk",
+				"registry": "https://registry.npmjs.org/",
+				"scope": "@obs-unified",
+				"dir": "sdks/node",
+				"private": false
+			},
+			{
+				"name": "@obs-unified/telemetry-sdk",
+				"registry": "https://npm.pkg.github.com",
+				"scope": "@obs-unified",
+				"dir": "packages/telemetry-sdk",
+				"private": false
+			},
+			{
+				"name": "@obs-unified/types",
+				"registry": "https://npm.pkg.github.com",
+				"scope": "@obs-unified",
+				"dir": "packages/obs-types",
+				"private": false
+			},
+			{
+				"name": "@obsunified/mcp-server",
+				"registry": "https://registry.npmjs.org/",
+				"scope": "@obsunified",
+				"dir": "packages/mcp-server",
+				"private": false
+			}
+		]
+	},
+	"authored": {
+		"displayName": "Observability Unified",
+		"slug": "obs-unified",
+		"identityChain": "user_id → session_id → interaction_id → trace_id → span_id → action_id",
+		"devIngestKey": "dev-ingest-key",
+		"scopes": {
+			"sdks": {
+				"scope": "@obs-unified",
+				"registry": "https://npm.pkg.github.com",
+				"note": "first-party SDKs on GitHub Packages"
+			},
+			"mcp": {
+				"scope": "@obsunified",
+				"registry": "https://registry.npmjs.org/",
+				"note": "MCP server on public npm (hyphen-less scope)"
+			}
+		},
+		"governance": {
+			"autonomyLevel": [
+				"read_only",
+				"suggested_action",
+				"human_approved_write",
+				"autonomous_write",
+				"blocked_by_policy"
+			],
+			"approvalState": [
+				"suggested",
+				"human_approved",
+				"bypassed",
+				"blocked"
+			],
+			"sideEffect": "boolean"
+		},
+		"glossary": {
+			"Observability Unified": "Display/brand name.",
+			"obs-unified": "Repo + GitHub-Packages scope (@obs-unified) + CLI binary name.",
+			"@obsunified": "Hyphen-less npm scope for the public MCP server package only.",
+			"Connected Rail": "The cross-signal pivot surface (HTTP /internal/connected/:kind/:id; MCP connected_signals).",
+			"CCR": "Compressed context retrieval — the evidence retrieval layer (RFC 0011).",
+			"evidence bundle": "Compact, token-budgeted evidence returned by the CCR layer."
+		},
+		"capabilities": [
+			{
+				"id": "traces",
+				"name": "Distributed tracing",
+				"status": "shipped"
+			},
+			{
+				"id": "logs",
+				"name": "Structured logs",
+				"status": "shipped"
+			},
+			{
+				"id": "usage",
+				"name": "Usage analytics",
+				"status": "shipped"
+			},
+			{
+				"id": "replay",
+				"name": "Session replay",
+				"status": "shipped"
+			},
+			{
+				"id": "ai",
+				"name": "AI / LLM observability",
+				"status": "shipped"
+			},
+			{
+				"id": "profiles",
+				"name": "Profiles (CPU/off-CPU)",
+				"status": "shipped"
+			},
+			{
+				"id": "alerts",
+				"name": "Alerts",
+				"status": "shipped"
+			},
+			{
+				"id": "analyses",
+				"name": "Application-aware analyses",
+				"status": "shipped"
+			},
+			{
+				"id": "action-graph",
+				"name": "Agent Action Graph",
+				"status": "shipped"
+			},
+			{
+				"id": "evidence-references",
+				"name": "Agent-readable evidence references",
+				"status": "shipped"
+			},
+			{
+				"id": "evidence-retrieval",
+				"name": "Evidence retrieval (CCR)",
+				"status": "shipped"
+			},
+			{
+				"id": "mcp",
+				"name": "MCP investigation server",
+				"status": "shipped"
+			}
+		],
+		"features": [
+			{
+				"id": "evidence-retrieval",
+				"displayName": "Evidence retrieval (compressed context retrieval)",
+				"glossary": [
+					"CCR",
+					"compressed context retrieval",
+					"evidence bundle",
+					"retrieval ref"
+				],
+				"status": "shipped",
+				"rfc": "0011-evidence-retrieval-layer",
+				"docsSlug": "/docs/evidence-retrieval",
+				"addsMcpTools": [
+					"get_evidence_bundle",
+					"retrieve_evidence_ref",
+					"search_evidence_ref",
+					"get_evidence_stats"
+				],
+				"addsEvidenceFields": [
+					"retrieval",
+					"retrievalRefIds",
+					"retrievalRefs"
+				],
+				"addsSignalType": "Evidence retrieval",
+				"surfacesWhenShipped": [
+					"readme.what-you-get",
+					"site.features",
+					"llms.signal-types",
+					"jsonld.featureList",
+					"docs.index",
+					"docs.page",
+					"mcp.tool-list",
+					"skills.tool-list"
+				]
+			}
+		]
+	}
+}
