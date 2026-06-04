@@ -167,6 +167,684 @@
 		"slug": "obs-unified",
 		"identityChain": "user_id → session_id → interaction_id → trace_id → span_id → action_id",
 		"devIngestKey": "dev-ingest-key",
+		"positioning": {
+			"hero": {
+				"headline": "A telemetry graph agents can actually debug with.",
+				"subhead": "Debug AI agents, and help AI agents debug software.",
+				"primaryProofImage": "/screenshots/app/agent-action-graph.png"
+			},
+			"proof": {
+				"identityChain": "user_id → session_id → interaction_id → trace_id → span_id → action_id",
+				"clickToActionCpuExample": "A click mints one interaction_id. Backend spans, logs, AI calls, action graphs, MCP tools, and CPU profiles join through the resulting trace."
+			},
+			"differentiator": {
+				"ccr": "Compressed context retrieval — the evidence retrieval layer (RFC 0011).",
+				"mcp": "MCP investigation server",
+				"evidenceRefs": "Agent-readable evidence references",
+				"actionGraph": "Agent Action Graph"
+			},
+			"distribution": {
+				"license": "MIT",
+				"hosting": "Self-host on your infra",
+				"docker": "Start locally with one Docker image",
+				"cloudflareNodePaths": "Cloudflare Workers with D1/R2, or run the Node collector on any cloud with Postgres and S3-compatible storage."
+			},
+			"comparison": {
+				"headline": "One stack instead of three (or nine)",
+				"agentRows": [
+					{
+						"name": "Observability Unified",
+						"key": "obs"
+					},
+					{
+						"name": "Datadog",
+						"key": "datadog"
+					},
+					{
+						"name": "Sentry",
+						"key": "sentry"
+					},
+					{
+						"name": "PostHog",
+						"key": "posthog"
+					},
+					{
+						"name": "Honeycomb",
+						"key": "honeycomb"
+					},
+					{
+						"name": "New Relic",
+						"key": "newrelic"
+					},
+					{
+						"name": "Grafana Cloud",
+						"key": "grafana"
+					},
+					{
+						"name": "SigNoz",
+						"key": "signoz"
+					},
+					{
+						"name": "Uptrace",
+						"key": "uptrace"
+					},
+					{
+						"name": "HyperDX",
+						"key": "hyperdx"
+					}
+				],
+				"axes": [
+					{
+						"id": "hosting-model",
+						"label": "Hosting model",
+						"capabilityId": "deployment",
+						"cells": {
+							"obs": {
+								"v": "Self-host on your infra",
+								"tone": "yes"
+							},
+							"datadog": {
+								"v": "SaaS only",
+								"tone": "no",
+								"ref": "dd-hosting"
+							},
+							"sentry": {
+								"v": "SaaS or Fair Source self-host",
+								"tone": "partial",
+								"ref": "se-hosting"
+							},
+							"posthog": {
+								"v": "Cloud-first · OSS self-host (hobby)",
+								"tone": "partial",
+								"ref": "ph-hosting"
+							},
+							"honeycomb": {
+								"v": "SaaS · Private Cloud AWS",
+								"tone": "partial",
+								"ref": "hc-hosting"
+							},
+							"newrelic": {
+								"v": "SaaS only",
+								"tone": "no",
+								"ref": "nr-hosting"
+							},
+							"grafana": {
+								"v": "Cloud or self-host LGTM",
+								"tone": "partial",
+								"ref": "gr-hosting"
+							},
+							"signoz": {
+								"v": "Cloud or OSS self-host",
+								"tone": "partial",
+								"ref": "sn-hosting"
+							},
+							"uptrace": {
+								"v": "Cloud or OSS self-host",
+								"tone": "partial",
+								"ref": "up-hosting"
+							},
+							"hyperdx": {
+								"v": "Cloud · OSS · ClickStack",
+								"tone": "partial",
+								"ref": "hx-hosting"
+							}
+						}
+					},
+					{
+						"id": "pricing-model",
+						"label": "Pricing model",
+						"cells": {
+							"obs": {
+								"v": "Free · pay your own infra",
+								"tone": "yes"
+							},
+							"datadog": {
+								"v": "Per host + per signal",
+								"tone": "no",
+								"ref": "dd-pricing"
+							},
+							"sentry": {
+								"v": "Tier + per-unit overage",
+								"tone": "partial",
+								"ref": "se-pricing"
+							},
+							"posthog": {
+								"v": "Per-unit, per product",
+								"tone": "partial",
+								"ref": "ph-pricing"
+							},
+							"honeycomb": {
+								"v": "Per event volume",
+								"tone": "partial",
+								"ref": "hc-pricing"
+							},
+							"newrelic": {
+								"v": "$/GB + per-user seat",
+								"tone": "no",
+								"ref": "nr-pricing"
+							},
+							"grafana": {
+								"v": "Per series + $/GB",
+								"tone": "partial",
+								"ref": "gr-pricing"
+							},
+							"signoz": {
+								"v": "$0.30/GB ingest",
+								"tone": "partial",
+								"ref": "sn-pricing"
+							},
+							"uptrace": {
+								"v": "$0.10/GB ingest",
+								"tone": "partial",
+								"ref": "up-pricing"
+							},
+							"hyperdx": {
+								"v": "$20 flat + $0.40/GB",
+								"tone": "partial",
+								"ref": "hx-pricing"
+							}
+						}
+					},
+					{
+						"id": "traces-apm",
+						"label": "Traces / APM",
+						"capabilityId": "traces",
+						"cells": {
+							"obs": {
+								"v": "OTLP-native (HTTP)",
+								"tone": "yes"
+							},
+							"datadog": {
+								"v": "Yes · OTLP in Preview",
+								"tone": "partial",
+								"ref": "dd-otlp"
+							},
+							"sentry": {
+								"v": "Performance · OTLP beta",
+								"tone": "partial",
+								"ref": "se-otlp"
+							},
+							"posthog": {
+								"v": "LLM-scoped only",
+								"tone": "no",
+								"ref": "ph-traces"
+							},
+							"honeycomb": {
+								"v": "OTLP-native",
+								"tone": "yes",
+								"ref": "hc-otlp"
+							},
+							"newrelic": {
+								"v": "Native OTLP",
+								"tone": "yes",
+								"ref": "nr-otlp"
+							},
+							"grafana": {
+								"v": "Tempo · OTLP",
+								"tone": "yes",
+								"ref": "gr-otlp"
+							},
+							"signoz": {
+								"v": "OTLP-native",
+								"tone": "yes",
+								"ref": "sn-otlp"
+							},
+							"uptrace": {
+								"v": "OTLP-native",
+								"tone": "yes",
+								"ref": "up-otlp"
+							},
+							"hyperdx": {
+								"v": "OTLP-native",
+								"tone": "yes",
+								"ref": "hx-otlp"
+							}
+						}
+					},
+					{
+						"id": "structured-logs",
+						"label": "Structured logs",
+						"capabilityId": "logs",
+						"cells": {
+							"obs": {
+								"v": "Trace-correlated",
+								"tone": "yes"
+							},
+							"datadog": {
+								"v": "Yes",
+								"tone": "yes",
+								"ref": "dd-logs"
+							},
+							"sentry": {
+								"v": "Yes · trace-connected",
+								"tone": "yes",
+								"ref": "se-logs"
+							},
+							"posthog": {
+								"v": "Yes (GA Jan 2026)",
+								"tone": "yes",
+								"ref": "ph-logs"
+							},
+							"honeycomb": {
+								"v": "Modeled as wide events",
+								"tone": "partial",
+								"ref": "hc-logs"
+							},
+							"newrelic": {
+								"v": "Yes · Grok-parsed",
+								"tone": "yes",
+								"ref": "nr-logs"
+							},
+							"grafana": {
+								"v": "Loki",
+								"tone": "yes",
+								"ref": "gr-logs"
+							},
+							"signoz": {
+								"v": "Yes · Logs Explorer",
+								"tone": "yes",
+								"ref": "sn-logs"
+							},
+							"uptrace": {
+								"v": "Yes",
+								"tone": "yes",
+								"ref": "up-logs"
+							},
+							"hyperdx": {
+								"v": "Yes · ClickHouse-backed",
+								"tone": "yes",
+								"ref": "hx-logs"
+							}
+						}
+					},
+					{
+						"id": "ai-llm-observability",
+						"label": "AI / LLM observability",
+						"capabilityId": "ai",
+						"cells": {
+							"obs": {
+								"v": "Built-in",
+								"tone": "yes"
+							},
+							"datadog": {
+								"v": "LLM Observability",
+								"tone": "yes",
+								"ref": "dd-llm"
+							},
+							"sentry": {
+								"v": "Agent Mon · Seer",
+								"tone": "yes",
+								"ref": "se-llm"
+							},
+							"posthog": {
+								"v": "LLM Analytics",
+								"tone": "yes",
+								"ref": "ph-llm"
+							},
+							"honeycomb": {
+								"v": "Agent Obs (Early Access)",
+								"tone": "partial",
+								"ref": "hc-llm"
+							},
+							"newrelic": {
+								"v": "AI Monitoring",
+								"tone": "yes",
+								"ref": "nr-llm"
+							},
+							"grafana": {
+								"v": "AI Observability (preview)",
+								"tone": "yes",
+								"ref": "gr-llm"
+							},
+							"signoz": {
+								"v": "LLM Observability",
+								"tone": "yes",
+								"ref": "sn-llm"
+							},
+							"uptrace": {
+								"v": "—",
+								"tone": "no",
+								"ref": "up-llm"
+							},
+							"hyperdx": {
+								"v": "Via OpenLLMetry",
+								"tone": "partial",
+								"ref": "hx-llm"
+							}
+						}
+					},
+					{
+						"id": "session-replay",
+						"label": "Session replay",
+						"capabilityId": "replay",
+						"cells": {
+							"obs": {
+								"v": "rrweb",
+								"tone": "yes"
+							},
+							"datadog": {
+								"v": "Yes (RUM)",
+								"tone": "yes",
+								"ref": "dd-replay"
+							},
+							"sentry": {
+								"v": "Yes (web + mobile)",
+								"tone": "yes",
+								"ref": "se-replay"
+							},
+							"posthog": {
+								"v": "rrweb",
+								"tone": "yes",
+								"ref": "ph-replay"
+							},
+							"honeycomb": {
+								"v": "—",
+								"tone": "no",
+								"ref": "hc-replay"
+							},
+							"newrelic": {
+								"v": "Yes · DOM-based",
+								"tone": "yes",
+								"ref": "nr-replay"
+							},
+							"grafana": {
+								"v": "Yes · Frontend Obs",
+								"tone": "yes",
+								"ref": "gr-replay"
+							},
+							"signoz": {
+								"v": "—",
+								"tone": "no",
+								"ref": "sn-replay"
+							},
+							"uptrace": {
+								"v": "—",
+								"tone": "no",
+								"ref": "up-replay"
+							},
+							"hyperdx": {
+								"v": "Yes · auto-linked",
+								"tone": "yes",
+								"ref": "hx-replay"
+							}
+						}
+					},
+					{
+						"id": "product-analytics",
+						"label": "Product analytics",
+						"capabilityId": "usage",
+						"cells": {
+							"obs": {
+								"v": "Yes",
+								"tone": "yes"
+							},
+							"datadog": {
+								"v": "Yes",
+								"tone": "yes",
+								"ref": "dd-pa"
+							},
+							"sentry": {
+								"v": "—",
+								"tone": "no",
+								"ref": "se-pa"
+							},
+							"posthog": {
+								"v": "Flagship",
+								"tone": "yes",
+								"ref": "ph-pa"
+							},
+							"honeycomb": {
+								"v": "—",
+								"tone": "no",
+								"ref": "hc-pa"
+							},
+							"newrelic": {
+								"v": "Browser-only",
+								"tone": "partial",
+								"ref": "nr-pa"
+							},
+							"grafana": {
+								"v": "—",
+								"tone": "no",
+								"ref": "gr-pa"
+							},
+							"signoz": {
+								"v": "—",
+								"tone": "no",
+								"ref": "sn-pa"
+							},
+							"uptrace": {
+								"v": "—",
+								"tone": "no",
+								"ref": "up-pa"
+							},
+							"hyperdx": {
+								"v": "—",
+								"tone": "no",
+								"ref": "hx-pa"
+							}
+						}
+					},
+					{
+						"id": "alerts",
+						"label": "Alerts",
+						"capabilityId": "alerts",
+						"cells": {
+							"obs": {
+								"v": "All signals · one engine",
+								"tone": "yes"
+							},
+							"datadog": {
+								"v": "Many · Watchdog ML",
+								"tone": "yes",
+								"ref": "dd-alerts"
+							},
+							"sentry": {
+								"v": "Issues · uptime · crons",
+								"tone": "yes",
+								"ref": "se-alerts"
+							},
+							"posthog": {
+								"v": "On trends only",
+								"tone": "partial",
+								"ref": "ph-alerts"
+							},
+							"honeycomb": {
+								"v": "Triggers · BubbleUp",
+								"tone": "yes",
+								"ref": "hc-alerts"
+							},
+							"newrelic": {
+								"v": "NRQL conditions",
+								"tone": "yes",
+								"ref": "nr-alerts"
+							},
+							"grafana": {
+								"v": "Unified Alerting",
+								"tone": "yes",
+								"ref": "gr-alerts"
+							},
+							"signoz": {
+								"v": "5 alert types",
+								"tone": "yes",
+								"ref": "sn-alerts"
+							},
+							"uptrace": {
+								"v": "Metric + Error",
+								"tone": "partial",
+								"ref": "up-alerts"
+							},
+							"hyperdx": {
+								"v": "Search + chart-based",
+								"tone": "partial",
+								"ref": "hx-alerts"
+							}
+						}
+					},
+					{
+						"id": "cross-signal-pivots",
+						"label": "Cross-signal pivots",
+						"capabilityId": "action-graph",
+						"cells": {
+							"obs": {
+								"v": "One traversable graph",
+								"tone": "yes"
+							},
+							"datadog": {
+								"v": "Within platform",
+								"tone": "partial",
+								"ref": "dd-correlation"
+							},
+							"sentry": {
+								"v": "Within platform · trace-id",
+								"tone": "partial",
+								"ref": "se-correlation"
+							},
+							"posthog": {
+								"v": "Within event store",
+								"tone": "partial",
+								"ref": "ph-correlation"
+							},
+							"honeycomb": {
+								"v": "Unified wide events",
+								"tone": "partial",
+								"ref": "hc-correlation"
+							},
+							"newrelic": {
+								"v": "Via NRQL",
+								"tone": "partial",
+								"ref": "nr-correlation"
+							},
+							"grafana": {
+								"v": "Per-data-source plumbing",
+								"tone": "partial",
+								"ref": "gr-correlation"
+							},
+							"signoz": {
+								"v": "Trace ↔ logs",
+								"tone": "partial",
+								"ref": "sn-correlation"
+							},
+							"uptrace": {
+								"v": "Within platform · UQL",
+								"tone": "partial",
+								"ref": "up-correlation"
+							},
+							"hyperdx": {
+								"v": "Auto-linked across signals",
+								"tone": "yes",
+								"ref": "hx-correlation"
+							}
+						}
+					},
+					{
+						"id": "agent-readable-evidence",
+						"label": "Agent-readable evidence",
+						"featureId": "evidence-retrieval",
+						"docsAnchor": "ou-agent-readable-evidence",
+						"cells": {
+							"obs": {
+								"v": "Evidence refs + CCR refs",
+								"tone": "yes",
+								"ref": "ou-agent-readable-evidence"
+							},
+							"datadog": {
+								"v": "Product-specific",
+								"tone": "neutral"
+							},
+							"sentry": {
+								"v": "Product-specific",
+								"tone": "neutral"
+							},
+							"posthog": {
+								"v": "Product-specific",
+								"tone": "neutral"
+							},
+							"honeycomb": {
+								"v": "Product-specific",
+								"tone": "neutral"
+							},
+							"newrelic": {
+								"v": "Product-specific",
+								"tone": "neutral"
+							},
+							"grafana": {
+								"v": "Product-specific",
+								"tone": "neutral"
+							},
+							"signoz": {
+								"v": "Product-specific",
+								"tone": "neutral"
+							},
+							"uptrace": {
+								"v": "Product-specific",
+								"tone": "neutral"
+							},
+							"hyperdx": {
+								"v": "Product-specific",
+								"tone": "neutral"
+							}
+						}
+					},
+					{
+						"id": "data-ownership",
+						"label": "Data ownership",
+						"capabilityId": "deployment",
+						"cells": {
+							"obs": {
+								"v": "Your D1/R2 or Postgres/S3",
+								"tone": "yes"
+							},
+							"datadog": {
+								"v": "Datadog cloud",
+								"tone": "no",
+								"ref": "dd-hosting"
+							},
+							"sentry": {
+								"v": "Sentry cloud or yours",
+								"tone": "partial",
+								"ref": "se-hosting"
+							},
+							"posthog": {
+								"v": "PostHog cloud or yours",
+								"tone": "partial",
+								"ref": "ph-hosting"
+							},
+							"honeycomb": {
+								"v": "Honeycomb or your AWS",
+								"tone": "partial",
+								"ref": "hc-residency"
+							},
+							"newrelic": {
+								"v": "New Relic US/EU",
+								"tone": "no",
+								"ref": "nr-hosting"
+							},
+							"grafana": {
+								"v": "Grafana cloud or yours",
+								"tone": "partial",
+								"ref": "gr-hosting"
+							},
+							"signoz": {
+								"v": "SigNoz cloud or yours",
+								"tone": "partial",
+								"ref": "sn-residency"
+							},
+							"uptrace": {
+								"v": "Uptrace cloud or yours",
+								"tone": "partial",
+								"ref": "up-hosting"
+							},
+							"hyperdx": {
+								"v": "Cloud (US) or yours",
+								"tone": "partial",
+								"ref": "hx-residency"
+							}
+						}
+					}
+				]
+			}
+		},
 		"scopes": {
 			"sdks": {
 				"scope": "@obs-unified",
@@ -240,6 +918,11 @@
 				"status": "shipped"
 			},
 			{
+				"id": "user",
+				"name": "User profiles",
+				"status": "shipped"
+			},
+			{
 				"id": "analyses",
 				"name": "Application-aware analyses",
 				"status": "shipped"
@@ -262,6 +945,11 @@
 			{
 				"id": "mcp",
 				"name": "MCP investigation server",
+				"status": "shipped"
+			},
+			{
+				"id": "deployment",
+				"name": "Deployment and data ownership",
 				"status": "shipped"
 			}
 		],
