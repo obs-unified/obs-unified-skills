@@ -66,6 +66,7 @@ Before hitting endpoints, name what's being asked. Investigation prompts fall in
 | **Agent/tool behavior** | "which tool is failing?", "why did this agent write bad data?" | `/internal/actions/aggregates/*` → `/internal/connected/*` |
 | **Profiles / code** | "what code is hot?", "which trace caused this profile frame?" | `/internal/profiles/:id` → `/internal/connected/profile/:id` |
 | **Missing instrumentation** | "why is this trace incomplete?", "where should I add spans?" | trace detail/analysis evidence → suggested pivots |
+| **Token-efficient evidence (CCR)** | "give me a compact bundle for this trace/action", "summarize this failure within a token budget" | `POST /internal/evidence/bundle` → `/internal/evidence/refs/:refId` |
 
 When the user's question doesn't cleanly fit, default to "Recent state" and refine after seeing what's there.
 
@@ -189,6 +190,26 @@ The `/internal/*` query surface, by signal type.
 | `GET /internal/actions/aggregates/cost-attribution` | Cost attribution by agent/model/prompt/tool/user | `hours`, `limit` |
 | `GET /internal/actions/aggregates/autonomous-review` | Risk review for autonomous or side-effecting actions | `hours`, `limit` |
 | `GET /internal/actions/aggregates/version-diff` | Agent/prompt/model version comparison | `baseline`, `target` |
+
+### Evidence retrieval (CCR)
+
+Compressed context retrieval — compact, token-budgeted evidence bundles so you
+pull the debugging signal, not the raw firehose. Prefer this when an anchor's raw
+context (e.g. a trace with hundreds of correlated logs) would blow the budget.
+Bundles/refs use the `EvidenceReference` contract; expand a ref only when you need
+the raw rows.
+
+| Endpoint | Purpose | Key params |
+| --- | --- | --- |
+| `POST /internal/evidence/bundle` | Compact evidence for an anchor (`trace`/`action`/`agent_run`/`tool_call`), scoped to an intent + token budget; returns findings, exemplars, and retrieval refs | body: anchor kind/id, intent, token budget |
+| `GET /internal/evidence/refs/:refId` | Expand a retrieval ref into raw/less-compacted/redacted records | `chunkOffset` (paginates replay event windows) |
+| `POST /internal/evidence/refs/:refId/search` | Search within a log retrieval ref without expanding the full slice | body: query |
+| `GET /internal/evidence/stats` | Issued/expanded evidence-ref telemetry for the project | (none) |
+
+Equivalent MCP tools: `get_evidence_bundle`, `retrieve_evidence_ref`,
+`search_evidence_ref`, `get_evidence_stats`. Retrieval is project-scoped; AI raw
+request/response stays redacted and tool expansion returns hashes + redacted
+args/results.
 
 ### Usage events / users / replay
 
