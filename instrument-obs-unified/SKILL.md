@@ -75,7 +75,7 @@ Only proceed past this gate once all three checks pass.
 
 ### 3. Install SDK packages
 
-Follow §0 of the doc — the GitHub Packages registry config followed by:
+Follow §0 of the doc — install the public npm packages:
 
 ```bash
 pnpm add @obs-unified/analytics-sdk     # wherever browser code runs

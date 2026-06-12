@@ -71,63 +71,63 @@
 		"packages": [
 			{
 				"name": "@obs-unified/agents-langgraph",
-				"registry": "https://npm.pkg.github.com",
+				"registry": "https://registry.npmjs.org/",
 				"scope": "@obs-unified",
 				"dir": "packages/agents-langgraph",
 				"private": false
 			},
 			{
 				"name": "@obs-unified/agents-vercel-ai",
-				"registry": "https://npm.pkg.github.com",
+				"registry": "https://registry.npmjs.org/",
 				"scope": "@obs-unified",
 				"dir": "packages/agents-vercel-ai",
 				"private": false
 			},
 			{
 				"name": "@obs-unified/analytics-sdk",
-				"registry": "https://npm.pkg.github.com",
+				"registry": "https://registry.npmjs.org/",
 				"scope": "@obs-unified",
 				"dir": "packages/analytics-sdk",
 				"private": false
 			},
 			{
 				"name": "@obs-unified/brand",
-				"registry": "https://npm.pkg.github.com",
+				"registry": "https://registry.npmjs.org/",
 				"scope": "@obs-unified",
 				"dir": "packages/brand",
 				"private": false
 			},
 			{
 				"name": "@obs-unified/cli",
-				"registry": "https://npm.pkg.github.com",
+				"registry": "https://registry.npmjs.org/",
 				"scope": "@obs-unified",
 				"dir": "packages/cli",
 				"private": false
 			},
 			{
 				"name": "@obs-unified/collector",
-				"registry": "https://npm.pkg.github.com",
+				"registry": "https://registry.npmjs.org/",
 				"scope": "@obs-unified",
 				"dir": "packages/obs-collector",
 				"private": false
 			},
 			{
 				"name": "@obs-unified/dashboard",
-				"registry": "https://npm.pkg.github.com",
+				"registry": "https://registry.npmjs.org/",
 				"scope": "@obs-unified",
 				"dir": "packages/dashboard",
 				"private": false
 			},
 			{
 				"name": "@obs-unified/messaging",
-				"registry": "https://npm.pkg.github.com",
+				"registry": "https://registry.npmjs.org/",
 				"scope": "@obs-unified",
 				"dir": "packages/messaging",
 				"private": true
 			},
 			{
 				"name": "@obs-unified/pprof-decoder",
-				"registry": "https://npm.pkg.github.com",
+				"registry": "https://registry.npmjs.org/",
 				"scope": "@obs-unified",
 				"dir": "packages/pprof-decoder",
 				"private": false
@@ -141,14 +141,14 @@
 			},
 			{
 				"name": "@obs-unified/telemetry-sdk",
-				"registry": "https://npm.pkg.github.com",
+				"registry": "https://registry.npmjs.org/",
 				"scope": "@obs-unified",
 				"dir": "packages/telemetry-sdk",
 				"private": false
 			},
 			{
 				"name": "@obs-unified/types",
-				"registry": "https://npm.pkg.github.com",
+				"registry": "https://registry.npmjs.org/",
 				"scope": "@obs-unified",
 				"dir": "packages/obs-types",
 				"private": false
@@ -170,8 +170,8 @@
 		"scopes": {
 			"sdks": {
 				"scope": "@obs-unified",
-				"registry": "https://npm.pkg.github.com",
-				"note": "first-party SDKs on GitHub Packages"
+				"registry": "https://registry.npmjs.org/",
+				"note": "first-party SDKs on public npm"
 			},
 			"mcp": {
 				"scope": "@obsunified",

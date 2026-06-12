@@ -33,10 +33,6 @@ For deeper detail on the backend SDK specifically, see
 ## 0. Install
 
 ```bash
-# obs-unified packages publish to GitHub Packages
-pnpm config set @obs-unified:registry https://npm.pkg.github.com
-pnpm login --scope=@obs-unified --auth-type=legacy --registry=https://npm.pkg.github.com
-
 pnpm add @obs-unified/analytics-sdk     # browser
 pnpm add @obs-unified/telemetry-sdk     # server
 ```
