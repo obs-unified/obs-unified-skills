@@ -13,17 +13,19 @@ Two paths, depending on how you prefer to manage skills.
 
 ### A. As pre-built `.skill` bundles (recommended)
 
-Each skill ships as a `.skill` file (a zip of the skill directory). Drop them into Claude Code's skills location:
+Each skill ships as a `.skill` file (a zip of the skill directory), attached to [GitHub Releases](https://github.com/obs-unified/obs-unified-skills/releases/latest) — no clone or build needed:
 
 ```bash
-# from this repo's dist/ directory
-cp instrument-obs-unified.skill ~/.claude/skills/
-cp investigate-obs-unified.skill ~/.claude/skills/
+curl -LO https://github.com/obs-unified/obs-unified-skills/releases/latest/download/instrument-obs-unified.skill
+curl -LO https://github.com/obs-unified/obs-unified-skills/releases/latest/download/investigate-obs-unified.skill
+cp *.skill ~/.claude/skills/
 
-# or install both with one command if your Claude Code version supports it:
-claude skill install dist/instrument-obs-unified.skill
-claude skill install dist/investigate-obs-unified.skill
+# or install with one command if your Claude Code version supports it:
+claude skill install instrument-obs-unified.skill
+claude skill install investigate-obs-unified.skill
 ```
+
+Working from a clone instead? `make build` produces the same bundles in `dist/` (it is not checked in).
 
 ### B. As source directories (best for hacking on the skills)
 
