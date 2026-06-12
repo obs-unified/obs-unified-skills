@@ -4,7 +4,7 @@ Claude Code skills for [obs-unified](https://github.com/obs-unified/obs-unified)
 
 | Skill | What it does |
 | --- | --- |
-| **[`instrument-obs-unified`](./instrument-obs-unified/)** | Wires `@obs-unified/analytics-sdk` (browser), `@obs-unified/telemetry-sdk` (server), and OpenInference AI span helpers into a TypeScript app end-to-end. Verifies telemetry is flowing by querying the collector. |
+| **[`instrument-obs-unified`](./instrument-obs-unified/)** | Wires `@obsunified/analytics-sdk` (browser), `@obsunified/telemetry-sdk` (server), and OpenInference AI span helpers into a TypeScript app end-to-end. Verifies telemetry is flowing by querying the collector. |
 | **[`investigate-obs-unified`](./investigate-obs-unified/)** | Queries a running obs-unified collector to investigate problems — traces, logs, AI calls, replays. Pivots across signals via the `connected` endpoint. The natural follow-up to the instrument skill. |
 
 ## Install
