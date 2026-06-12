@@ -1,7 +1,7 @@
 # Instrumenting a React + Hono app end-to-end
 
-A complete walkthrough for wiring `@obs-unified/analytics-sdk` and
-`@obs-unified/telemetry-sdk` into a new React (Vite) frontend with a Hono
+A complete walkthrough for wiring `@obsunified/analytics-sdk` and
+`@obsunified/telemetry-sdk` into a new React (Vite) frontend with a Hono
 backend on Cloudflare Workers — including AI / LLM calls. Once finished,
 every browser interaction propagates through to a backend trace, AI calls
 show up in the AI tab with cost / tokens, and structured logs link back to
@@ -33,8 +33,8 @@ For deeper detail on the backend SDK specifically, see
 ## 0. Install
 
 ```bash
-pnpm add @obs-unified/analytics-sdk     # browser
-pnpm add @obs-unified/telemetry-sdk     # server
+pnpm add @obsunified/analytics-sdk     # browser
+pnpm add @obsunified/telemetry-sdk     # server
 ```
 
 Add to `.env`:
@@ -51,7 +51,7 @@ VITE_OBS_INGEST_KEY=obs_…                         # browser (separate write-on
 `src/main.tsx`:
 
 ```tsx
-import { AnalyticsProvider } from "@obs-unified/analytics-sdk/react";
+import { AnalyticsProvider } from "@obsunified/analytics-sdk/react";
 import ReactDOM from "react-dom/client";
 import { App } from "./App";
 
@@ -89,7 +89,7 @@ begin recording (next step).
 ## 2. Frontend — custom events and replay
 
 ```tsx
-import { useAnalytics } from "@obs-unified/analytics-sdk/react";
+import { useAnalytics } from "@obsunified/analytics-sdk/react";
 import { useEffect } from "react";
 
 function CheckoutButton() {
@@ -134,7 +134,7 @@ import {
   initObservability,
   runWithSpan,
   stampInteractionFromRequest,
-} from "@obs-unified/telemetry-sdk";
+} from "@obsunified/telemetry-sdk";
 import { Hono } from "hono";
 
 type Env = { OBS_COLLECTOR_URL: string; OBS_INGEST_KEY: string };
@@ -177,7 +177,7 @@ so an explicit flush is required — buffered telemetry won't survive.)
 Inside a route handler, wrap any sub-operation in `withChildSpan`:
 
 ```ts
-import { withChildSpan } from "@obs-unified/telemetry-sdk";
+import { withChildSpan } from "@obsunified/telemetry-sdk";
 
 app.post("/api/checkout", async (c) => {
   const items = await withChildSpan("inventory.check", async () => {
@@ -204,7 +204,7 @@ that hang off the active request:
 import {
   setAISessionContext,
   startLLMSpan,
-} from "@obs-unified/telemetry-sdk";
+} from "@obsunified/telemetry-sdk";
 
 app.post("/api/assistant", async (c) => {
   setAISessionContext({
@@ -260,7 +260,7 @@ Richer AI flows have matching helpers:
 ## 6. Backend — Cloudflare binding wrappers (optional, free)
 
 ```ts
-import { wrapD1, wrapFetch, wrapR2 } from "@obs-unified/telemetry-sdk/cloudflare";
+import { wrapD1, wrapFetch, wrapR2 } from "@obsunified/telemetry-sdk/cloudflare";
 
 const db = wrapD1(env.DB);
 const bucket = wrapR2(env.REPLAYS, { bucketName: "replays" });

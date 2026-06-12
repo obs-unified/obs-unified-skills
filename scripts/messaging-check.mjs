@@ -7,7 +7,7 @@
 // Rules:
 //   1. package scope  — every @obs[-]unified/<pkg> token in a SKILL.md must be a
 //      real package name in manifest.derived.packages[].name. Catches the
-//      @obs-unified/mcp-server -> @obsunified/mcp-server rename class.
+//      @obsunified/mcp-server -> @obsunified/mcp-server rename class.
 //   2. tool names     — every standalone backticked token shaped like an MCP
 //      tool must exist in manifest.derived.mcpTools. Catches a referenced tool
 //      that was renamed/removed.

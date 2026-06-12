@@ -1,6 +1,6 @@
 ---
 name: instrument-obs-unified
-description: Add obs-unified observability instrumentation to a TypeScript project end-to-end — frontend (`@obs-unified/analytics-sdk`), backend (`@obs-unified/telemetry-sdk`), and any AI/LLM calls (OpenInference span helpers) — then verify telemetry is actually flowing by querying the collector. Use this skill whenever the user asks to instrument an app with obs-unified, wire up obs-unified observability, set up obs-unified tracing or replay, or types `/instrument-obs-unified`. Also use when the user mentions adding click-to-trace, interaction-id propagation, or session replay to a TypeScript app and obs-unified is the target stack — even if they don't name the SDKs explicitly.
+description: Add obs-unified observability instrumentation to a TypeScript project end-to-end — frontend (`@obsunified/analytics-sdk`), backend (`@obsunified/telemetry-sdk`), and any AI/LLM calls (OpenInference span helpers) — then verify telemetry is actually flowing by querying the collector. Use this skill whenever the user asks to instrument an app with obs-unified, wire up obs-unified observability, set up obs-unified tracing or replay, or types `/instrument-obs-unified`. Also use when the user mentions adding click-to-trace, interaction-id propagation, or session replay to a TypeScript app and obs-unified is the target stack — even if they don't name the SDKs explicitly.
 ---
 
 The canonical reference is **[`docs/howto/instrument-react-hono.md`](references/instrument-react-hono.md)** in the obs-unified repo. Every code change this skill makes should match the patterns in that doc — this file is the *workflow*; the doc is the *spec*. Read it once before starting if the project is non-trivial.
@@ -78,8 +78,8 @@ Only proceed past this gate once all three checks pass.
 Follow §0 of the doc — install the public npm packages:
 
 ```bash
-pnpm add @obs-unified/analytics-sdk     # wherever browser code runs
-pnpm add @obs-unified/telemetry-sdk     # wherever server code runs
+pnpm add @obsunified/analytics-sdk     # wherever browser code runs
+pnpm add @obsunified/telemetry-sdk     # wherever server code runs
 ```
 
 In a monorepo, install per package, not at the root.
@@ -139,7 +139,7 @@ Don't wrap everything — spans are not free. Wrap operations that take measurab
 **For Cloudflare Workers projects**, add the binding wrappers from §6:
 
 ```ts
-import { wrapD1, wrapR2, wrapFetch } from "@obs-unified/telemetry-sdk/cloudflare";
+import { wrapD1, wrapR2, wrapFetch } from "@obsunified/telemetry-sdk/cloudflare";
 const db = wrapD1(env.DB);
 ```
 
@@ -176,9 +176,9 @@ do not rely on fallback IDs:
 
 When a framework wrapper exists, use it before hand-rolling action attributes:
 
-- Vercel AI SDK: `@obs-unified/agents-vercel-ai`
-- LangGraph/LangChain runnable flows: `@obs-unified/agents-langgraph`
-- Native TypeScript agents: `@obs-unified/telemetry-sdk/agent`
+- Vercel AI SDK: `@obsunified/agents-vercel-ai`
+- LangGraph/LangChain runnable flows: `@obsunified/agents-langgraph`
+- Native TypeScript agents: `@obsunified/telemetry-sdk/agent`
 
 For each LLM call site, wrap with the matching helper per §5 of the doc. After the call:
 
@@ -273,7 +273,7 @@ The skill must be safe to invoke a second time on the same project. A re-invocat
 | Pre-flight: collector reachable but `/internal/telemetry/overview` returns "no project" | The collector has no projects seeded. Have them run the project-seed migration in obs-unified or create a project in the dashboard, then retry. |
 | Pre-flight: dashboard URL unreachable | Non-blocking — instrumentation still works, but the final deep-link won't open. Confirm with the user before proceeding without it. |
 | Worker project uses `vite-plugin-cloudflare` or `miniflare` instead of `wrangler dev` | Detect from `package.json` scripts and start the matching dev command. SDK code is unchanged. |
-| Non-Worker backend (Node/Bun/Deno) | Skip the `@obs-unified/telemetry-sdk/cloudflare` subpath imports — they're Worker-only. Everything else is identical. |
+| Non-Worker backend (Node/Bun/Deno) | Skip the `@obsunified/telemetry-sdk/cloudflare` subpath imports — they're Worker-only. Everything else is identical. |
 | Verification: trace not found | SDK buffers flush every ~10s; the middleware's explicit flush should make traces visible immediately. Retry after 5s. If still missing, check the backend logs for `flushLogs` / `flushAICalls` errors. |
 | Verification: interaction header absent | Frontend isn't using the provider's `fetch`, or `autoCorrelate` is disabled. Re-check §1 and §2 of the doc. |
 | Verification: AI spans show but aren't under the request span | `startLLMSpan()` is being called outside the request's `runWithSpan` scope. Move it inside the route handler. |
