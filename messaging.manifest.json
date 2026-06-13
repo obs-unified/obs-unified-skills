@@ -238,7 +238,7 @@
 		},
 		"scopes": {
 			"sdks": {
-				"scope": "@obs-unified",
+				"scope": "@obsunified",
 				"registry": "https://registry.npmjs.org/",
 				"note": "first-party SDKs on public npm"
 			},
@@ -266,8 +266,8 @@
 		},
 		"glossary": {
 			"Observability Unified": "Display/brand name.",
-			"obs-unified": "Repo + GitHub-Packages scope (@obs-unified) + CLI binary name.",
-			"@obsunified": "npm scope for the public MCP server package only.",
+			"obs-unified": "Repo name (github.com/obs-unified/obs-unified) and the CLI binary name. Earlier releases also used @obs-unified as a GitHub-Packages npm scope; it is retired in favor of @obsunified on public npm.",
+			"@obsunified": "npm scope for all public packages (SDKs, collector, CLI, dashboard, MCP server) on registry.npmjs.org.",
 			"Connected Rail": "The cross-signal pivot surface (HTTP /internal/connected/:kind/:id; MCP connected_signals).",
 			"CCR": "Compressed context retrieval — the evidence retrieval layer (RFC 0011).",
 			"evidence bundle": "Compact, token-budgeted evidence returned by the CCR layer."

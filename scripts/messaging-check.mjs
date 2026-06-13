@@ -44,6 +44,22 @@ try {
 const derived = manifest.derived ?? {};
 const packageNames = new Set((derived.packages ?? []).map((p) => p.name));
 const mcpTools = new Set(derived.mcpTools ?? []);
+
+// --- check 0: manifest scope integrity --------------------------------------
+// Every static scopes.*.scope must be a scope carried by a derived package.
+// Catches a stale vendored manifest that survived an npm-scope rename.
+{
+  const derivedScopes = new Set(
+    (derived.packages ?? []).map((p) => p.scope).filter(Boolean),
+  );
+  for (const [key, entry] of Object.entries(manifest.scopes ?? {})) {
+    if (entry?.scope && !derivedScopes.has(entry.scope)) {
+      errors.push(
+        `scopes.${key}.scope "${entry.scope}" is not the scope of any derived package (stale vendored manifest?)`,
+      );
+    }
+  }
+}
 const allowedEvidenceFields = new Set([
   ...(derived.evidenceReferenceFields ?? []),
   ...(derived.evidenceRetrievalRefFields ?? []),
